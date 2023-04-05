@@ -1,10 +1,20 @@
 import React from 'react'
 
-type Props = {}
+type ListProps = {
+  colorList: string[]
+}
 
-const List = (props: Props) => {
+const List = ({ colorList }: ListProps) => {
   return (
-    <div>List</div>
+    <div className=''>
+      <ul>
+        {colorList.map((color) => (
+          <li>
+            {color}
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 

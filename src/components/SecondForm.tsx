@@ -1,8 +1,8 @@
 import React from 'react'
 
-type Props = {}
+type SecondFormProps = {}
 
-const SecondForm = (props: Props) => {
+const SecondForm = (props: SecondFormProps) => {
   return (
     <div>secondForm</div>
   )

@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import FirstForm from './components/FirstForm';
 import List from './components/List';
-import SecondForm from './components/secondForm';
+import SecondForm from './components/SecondForm';
 
 function App() {
+  const [color, setColor] = useState('');
+  const [colorList, setColorList] = useState<string[]>([]);
+
   return (
     <div className="App">
-      <FirstForm/>
-      <SecondForm/>
-      <List/>
+      <FirstForm color={color} setColor={setColor} setColorList={setColorList} />
+      <SecondForm />
+      <List colorList={colorList} />
     </div>
   );
 }
