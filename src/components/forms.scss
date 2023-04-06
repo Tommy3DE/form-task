@@ -1,0 +1,29 @@
+.goonline_firstForm{
+    width: 50%;
+    background-color: wheat;
+    margin: auto;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.goonline_firstForm input {
+    font-size: 25px;
+    border-radius: 5px;
+    border: none;
+    padding: 3px;
+}
+
+.goonline_firstForm button {
+    font-size: 25px;
+    margin-left: 1rem;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+}
+
+.goonline_firstForm button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}

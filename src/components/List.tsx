@@ -1,13 +1,16 @@
-import React from 'react'
+import {Dispatch, SetStateAction} from 'react'
 import './list.scss'
 
 type ListProps = {
-  colorList: string[]
+  colorList: string[],
+  setColorList: Dispatch<SetStateAction<string[]>>;
 }
 
-const List = ({ colorList }: ListProps) => {
-  const handleDelete = () => {
-
+const List = ({ colorList, setColorList }: ListProps) => {
+  const handleDelete = (index: number) => {
+    const newList = [...colorList];
+    newList.splice(index, 1);
+    setColorList(newList);
   }
 
   return (
@@ -19,13 +22,13 @@ const List = ({ colorList }: ListProps) => {
               <p>
                 {color}
               </p>
-              <button onClick={handleDelete}>
+              <button onClick={() => handleDelete(index)}>
                 X
               </button>
             </div>
           </li>
         ))) : (
-          <p>No colors found</p>
+          <p>Brak kolorów w bazie</p>
         )}
       </ul>
     </div>

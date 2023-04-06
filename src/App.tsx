@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <FirstForm color={color} setColor={setColor} setColorList={setColorList} />
       <SecondForm colorList={colorList} setColorList={setColorList}/>
-      <List colorList={colorList} />
+      <List colorList={colorList} setColorList={setColorList}/>
     </div>
   );
 }

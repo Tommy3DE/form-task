@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
+import './forms.scss'
 
 interface FirstFormProps {
   color: string;
@@ -33,20 +34,21 @@ const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="colorInput" className="">
+    <form onSubmit={handleSubmit} className='goonline_firstForm'>
+      <label htmlFor="colorInput">
         Nazwa Koloru
       </label>
-      <input
-        id="colorInput"
-        type="text"
-        className=""
-        placeholder="wpisz wybrany kolor"
-        value={color}
-        onChange={handleColorChange}
-        maxLength={7}
-      />
-      <button type="submit">Submit</button>
+      <div>
+        <input
+          id="colorInput"
+          type="text"
+          placeholder="wpisz wybrany kolor"
+          value={color}
+          onChange={handleColorChange}
+          maxLength={7}
+        />
+        <button type="submit">Dodaj</button>
+      </div>
     </form>
   );
 };
