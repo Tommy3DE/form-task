@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './App.scss';
 import FirstForm from './components/FirstForm';
 import List from './components/List';
 import SecondForm from './components/SecondForm';
