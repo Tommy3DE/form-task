@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <FirstForm color={color} setColor={setColor} setColorList={setColorList} />
-      <SecondForm />
+      <SecondForm colorList={colorList} setColorList={setColorList}/>
       <List colorList={colorList} />
     </div>
   );
