@@ -5,12 +5,21 @@ type ListProps = {
 }
 
 const List = ({ colorList }: ListProps) => {
+  const handleDelete = () => {
+
+  }
+
   return (
     <div className=''>
-      <ul>
-        {colorList.map((color) => (
-          <li>
+      <ul className=''>
+        {colorList.map((color, index) => (
+          <li key={index} className=''>
+            <p>
             {color}
+            </p>
+            <button onClick={handleDelete}>
+              X
+            </button>
           </li>
         ))}
       </ul>

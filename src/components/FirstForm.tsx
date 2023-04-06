@@ -12,6 +12,7 @@ const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
     if (inputIsValid(color)) {
       setColorList((prevColorList) => [...prevColorList, color]);
       setColor('');
+      localStorage.setItem('colors', JSON.stringify([...getSavedColors(), color]));
     }
   };
 
@@ -24,6 +25,11 @@ const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
 
   const inputIsValid = (value: string): boolean => {
     return /^#[a-fA-F0-9]{6}$/.test(value);
+  };
+
+  const getSavedColors = (): string[] => {
+    const savedColorsString = localStorage.getItem('colors');
+    return savedColorsString ? JSON.parse(savedColorsString) : [];
   };
 
   return (
