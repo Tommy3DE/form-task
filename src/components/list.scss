@@ -1,11 +1,11 @@
 .goonline_list-ul {
     list-style: none;
-    width: 40%;
+    width: 50%;
     margin: auto;
     
     li {
       margin: 1rem 1rem;
-      background-color: purple;
+      background-color: rgb(62, 78, 81);
       border-radius: 50px;
   
       .goonline_list-ul-content {
@@ -35,6 +35,8 @@
         button:hover {
             transform: scale(1.1);
             cursor: pointer;
+            color: red;
+            border-color: red;
         }
       }
     }

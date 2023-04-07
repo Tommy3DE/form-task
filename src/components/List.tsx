@@ -17,10 +17,10 @@ const List = ({ colorList, setColorList }: ListProps) => {
     <div className=''>
       <ul className='goonline_list-ul'>
         {colorList.length > 0 ? (colorList.map((color, index) => (
-          <li key={index}>
+          <li key={index} onDoubleClick={()=> handleDelete(index)}>
             <div className='goonline_list-ul-content'>
               <p>
-                {color}
+                {color.toUpperCase()}
               </p>
               <button onClick={() => handleDelete(index)}>
                 X
