@@ -1,5 +1,6 @@
-import {Dispatch, SetStateAction} from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import './list.scss'
+import defaultColors from '../data/defaultColors'
 
 type ListProps = {
   colorList: string[],
@@ -14,22 +15,32 @@ const List = ({ colorList, setColorList }: ListProps) => {
   }
 
   return (
-    <div className=''>
+    <div>
       <ul className='goonline_list-ul'>
-        {colorList.length > 0 ? (colorList.map((color, index) => (
-          <li key={index} onDoubleClick={()=> handleDelete(index)}>
+        {defaultColors.map((dcolor, index) => (
+          <li key={index}>
+            <div className='goonline_list-ul-content'>
+              <p>
+                {dcolor.color.toUpperCase()}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <ul className='goonline_list-ul'>
+        {colorList.map((color, index) => (
+          <li key={index} onDoubleClick={() => handleDelete(index)}>
             <div className='goonline_list-ul-content'>
               <p>
                 {color.toUpperCase()}
+
               </p>
               <button onClick={() => handleDelete(index)}>
                 X
               </button>
             </div>
           </li>
-        ))) : (
-          <p>Brak kolorów w bazie</p>
-        )}
+        ))}
       </ul>
     </div>
   )
