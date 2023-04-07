@@ -11,7 +11,7 @@ const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
   useEffect(() => {
     getSavedColors()
   }, [])
-  
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (inputIsValid(color)) {
@@ -32,7 +32,6 @@ const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
       }
     }
   };
-  
 
   const inputIsValid = (value: string): boolean => {
     return /^#[a-fA-F0-9]{6}$/.test(value);
@@ -41,7 +40,7 @@ const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
   const getSavedColors = (): string[] => {
     const savedColorsString = localStorage.getItem('colors');
     return savedColorsString ? JSON.parse(savedColorsString) : [];
-    
+
   };
 
   return (

@@ -6,7 +6,7 @@ import SecondForm from './components/SecondForm';
 
 function App() {
   const [color, setColor] = useState('');
-  const [colorList, setColorList] = useState<string[]>([]);
+  const [colorList, setColorList] = useState<string[]>(['#FF0000', '#00FF00', '#0000FF', '#2acf3a']);
 
   return (
     <div className="App">
