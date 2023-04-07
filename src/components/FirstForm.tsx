@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect } from 'react';
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import './forms.scss'
 
 interface FirstFormProps {
@@ -8,16 +8,12 @@ interface FirstFormProps {
 }
 
 const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
-  useEffect(() => {
-    getSavedColors()
-  }, [])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (inputIsValid(color)) {
       setColorList((prevColorList) => [...prevColorList, color]);
       setColor('');
-      localStorage.setItem('colors', JSON.stringify([...getSavedColors(), color]));
     }
   };
 
@@ -37,11 +33,6 @@ const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
     return /^#[a-fA-F0-9]{6}$/.test(value);
   };
 
-  const getSavedColors = (): string[] => {
-    const savedColorsString = localStorage.getItem('colors');
-    return savedColorsString ? JSON.parse(savedColorsString) : [];
-
-  };
 
   return (
     <form onSubmit={handleSubmit} className='goonline_firstForm'>
