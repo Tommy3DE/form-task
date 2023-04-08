@@ -1,19 +1,37 @@
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect } from 'react';
 import './forms.scss'
-
+import { initialColors } from '../App';
 interface FirstFormProps {
   color: string;
   setColor: (color: string) => void;
   setColorList: Dispatch<SetStateAction<string[]>>;
+  colorList: string[]
 }
 
-const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
+const FirstForm = ({ color, setColor, setColorList, colorList }: FirstFormProps) => {
+  
+  useEffect(()=> {
+    const getLocalStorage: string | null = localStorage.getItem('colors')
+    const parsedLocalStorage: string[] = getLocalStorage ? JSON.parse(getLocalStorage) : []
+    if (getLocalStorage){
+      setColorList([...initialColors, ...parsedLocalStorage])
+    }
+    
+  },[])
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>, passedColor: string) => {
     event.preventDefault();
-    if (inputIsValid(color)) {
-      setColorList((prevColorList) => [...prevColorList, color]);
+    if(colorList.includes(passedColor)) return
+    if (inputIsValid(passedColor)) {
+      setColorList((prevColorList) => [...prevColorList, passedColor]);
+      const getLocalStorage: string | null = localStorage.getItem('colors')
+      const parsedLocalStorage: string[] = getLocalStorage ? JSON.parse(getLocalStorage) : []
       setColor('');
+      if(getLocalStorage){
+        return localStorage.setItem('colors', JSON.stringify([...parsedLocalStorage, passedColor]))
+      }
+      localStorage.setItem('colors', JSON.stringify([passedColor]))
+      
     }
   };
 
@@ -35,7 +53,7 @@ const FirstForm = ({ color, setColor, setColorList }: FirstFormProps) => {
 
 
   return (
-    <form onSubmit={handleSubmit} className='goonline_firstForm'>
+    <form onSubmit={(e) => handleSubmit(e, color)} className='goonline_firstForm'>
       <label htmlFor="colorInput">
         Nazwa Koloru
       </label>
