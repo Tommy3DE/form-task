@@ -1,43 +1,119 @@
-import { Component, ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import './forms.scss';
 
-type SecondFormProps = {
-  colorList: string[],
+interface SecondFormProps {
+  colorList: string[];
   setColorList: Dispatch<SetStateAction<string[]>>;
 }
 
-type SecondFormState = {
-  searchValue: string;
+interface FilterState {
+  red: boolean;
+  green: boolean;
+  blue: boolean;
+  saturation: boolean;
 }
 
-class SecondForm extends Component<SecondFormProps, SecondFormState> {
-  constructor(props: SecondFormProps) {
-    super(props);
-    this.state = {
-      searchValue: '',
-    };
-  }
+const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
+  const [filterState, setFilterState] = useState<FilterState>({
+    red: false,
+    green: false,
+    blue: false,
+    saturation: false,
+  });
 
-  handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const searchValue = event.target.value.toLowerCase();
-    const { setColorList, colorList } = this.props;
-    const filteredColorList = colorList.filter((color) =>
-      color.toLowerCase().includes(searchValue)
-    );
-    this.setState({ searchValue });
-    setColorList(filteredColorList);
-  }
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    setFilterState((prevState) => ({ ...prevState, [name]: checked }));
+  };
 
-  render() {
-    const { searchValue } = this.state;
-    return (
-      <form className='goonline_secondForm'>
-        <label htmlFor="searchInput">Szukaj koloru</label>
-        <input type="text" id='searchInput' placeholder="np. #ffffff" maxLength={7} value={searchValue}
-          onChange={this.handleSearchChange} />
-      </form>
-    );
-  }
-}
+  const filterColors = (colors: string[]): string[] => {
+    return colors.filter((color) => {
+      const [r, g, b] = color.match(/\w\w/g)!.map((c) => parseInt(c, 16));
+      const [h, s, l] = rgbToHsl(r, g, b);
+      return (
+        (!filterState.red || r > 127) &&
+        (!filterState.green || g > 127) &&
+        (!filterState.blue || b > 127) &&
+        (!filterState.saturation || s > 50)
+      );
+    });
+  };
 
-export default SecondForm;
+  const rgbToHsl = (r: number, g: number, b: number): number[] => {
+    r /= 255, g /= 255, b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+
+    if (max == min) {
+      h = s = 0; // achromatic
+    } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+    }
+
+    return [h, s * 100, l * 100];
+  };
+
+  const filteredColors = filterColors(colorList);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setColorList(filteredColors);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="goonline_secondForm">
+      <label htmlFor="redCheckbox">
+        Red {'>'} 50%
+        <input
+          type="checkbox"
+          id="redCheckbox"
+          name="red"
+          checked={filterState.red}
+          onChange={handleFilterChange}
+        />
+      </label>
+      <label htmlFor="greenCheckbox">
+        Green {'>'} 50%
+        <input
+          type="checkbox"
+          id="greenCheckbox"
+          name="green"
+          checked={filterState.green}
+          onChange={handleFilterChange}
+        />
+      </label>
+      <label htmlFor="blueCheckbox">
+        Blue {'>'} 50%
+        <input
+          type="checkbox"
+          id="blueCheckbox"
+          name="blue"
+          checked={filterState.blue}
+          onChange={handleFilterChange}
+          />
+          </label>
+          <label htmlFor="saturationCheckbox">
+          Saturation {'>'} 50%
+          <input
+                 type="checkbox"
+                 id="saturationCheckbox"
+                 name="saturation"
+                 checked={filterState.saturation}
+                 onChange={handleFilterChange}
+               />
+          </label>
+          <button type="submit" className="goonline_secondForm__button">
+          Filter
+          </button>
+          </form>
+          );
+          };
+          
+          export default SecondForm;
