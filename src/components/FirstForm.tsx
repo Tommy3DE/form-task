@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import { ChangeEvent, Component, Dispatch, FormEvent, SetStateAction } from 'react';
 import './forms.scss';
 import { initialColors } from '../App';
 
 interface FirstFormProps {
   color: string;
   setColor: (color: string) => void;
-  setColorList: React.Dispatch<React.SetStateAction<string[]>>;
+  setColorList: Dispatch<SetStateAction<string[]>>;
   colorList: string[];
 }
 
@@ -20,7 +20,7 @@ class FirstForm extends Component<FirstFormProps, FirstFormState> {
     }
   }
 
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>, passedColor: string) => {
+  handleSubmit = (event: FormEvent<HTMLFormElement>, passedColor: string) => {
     event.preventDefault();
     const { setColorList, colorList } = this.props;
     if (colorList.includes(passedColor)) return;
@@ -36,7 +36,7 @@ class FirstForm extends Component<FirstFormProps, FirstFormState> {
     }
   };
 
-  handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleColorChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newColor = event.target.value;
     const { setColor } = this.props;
     if (newColor.length <= 7 && /^[a-fA-F0-9#]*$/.test(newColor)) {

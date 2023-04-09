@@ -1,45 +1,94 @@
+$font-size: 25px;
+$border-radius: 5px;
+$padding: 1rem;
+$button-border: 1px solid white;
+
 .goonline_firstForm{
     width: 50%;
-    
     margin: auto;
-    font-size: 25px;
+    font-size: $font-size;
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
-}
+    padding: $padding;
+    
+    input {
+        font-size: $font-size;
+        border-radius: $border-radius;
+        border: none;
+        padding: 3px;
+    }
 
-.goonline_firstForm input {
-    font-size: 25px;
-    border-radius: 5px;
-    border: none;
-    padding: 3px;
-}
+    button {
+        font-size: $font-size;
+        margin-left: 1rem;
+        background-color: transparent;
+        border: $button-border;
+        margin-top: $padding;
 
-.goonline_firstForm button {
-    font-size: 25px;
-    margin-left: 1rem;
-    border-radius: 50%;
-    background-color: transparent;
-    border: none;
-}
-
-.goonline_firstForm button:hover{
-    transform: scale(1.1);
-    cursor: pointer;
+        &:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+    }
 }
 
 .goonline_secondForm{
-    width: 50%;
-    background-color:cadetblue;
+    width: 60%;
     margin: auto;
-    font-size: 25px;
+    font-size: $font-size;
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
+    padding: $padding;
+
+    button {
+        font-size: $font-size;
+        background-color: transparent;
+        border: $button-border;
+
+        &:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+    }
+    input{
+        margin-left: 10px;
+        height: 20px;
+        width: 20px;
+    }
 }
-.goonline_secondForm input {
-    font-size: 25px;
-    border-radius: 5px;
-    border: none;
-    padding: 3px;
+
+@media screen and (max-width: 768px){
+    .goonline_secondForm{
+        display: flex;
+        flex-direction: column;
+
+        button {
+            font-size: 30px;
+            width:20%;
+            margin: auto;
+            margin-top: 30px;
+            border: none;
+        }
+        input{
+            margin-left: 5px;
+            height: 30px;
+            width: 30px;
+        }
+    }
+    .goonline_firstForm{
+        display: flex;
+        flex-direction: column;
+        
+        label {
+            font-size: 35px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        button {
+            border: none;
+        }
+        input {
+            width: 100%;
+        }
+    }
 }

@@ -113,7 +113,7 @@ const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
         />
       </label>
       <button type="submit" className="goonline_secondForm__button">
-        Filter
+        Filtruj
       </button>
     </form>
   );

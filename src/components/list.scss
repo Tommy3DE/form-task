@@ -1,10 +1,10 @@
 .goonline_list-ul {
     list-style: none;
-    width: 40%;
+    width: 50%;
     margin: auto;
     
     li {
-      margin: 1rem 1rem;
+      margin: auto;
       background-color: rgb(62, 78, 81);
       border-radius: 10px;
   
@@ -50,5 +50,13 @@
           width: 5rem;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 768px){
+    .goonline_list-ul{
+      width: 90%;
+      margin: auto;
+      padding: 0;
     }
   }
