@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import './forms.scss';
 
 interface SecondFormProps {
@@ -21,7 +21,7 @@ const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
     saturation: false,
   });
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setFilterState((prevState) => ({ ...prevState, [name]: checked }));
   };
@@ -44,9 +44,9 @@ const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
     r /= 255, g /= 255, b /= 255;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
     let h: number, s: number, l: number = (max + min) / 2;
-  
+
     if (max === min) {
-      h = s = 0; 
+      h = s = 0;
     } else {
       const d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -54,21 +54,25 @@ const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
         case r: h = (g - b) / d + (g < b ? 6 : 0); break;
         case g: h = (b - r) / d + 2; break;
         case b: h = (r - g) / d + 4; break;
-        default: h = 0; 
+        default: h = 0;
       }
       h /= 6;
     }
-  
+
     return [h, s * 100, l * 100] as [number, number, number];
   };
-  
+
 
   const filteredColors = filterColors(colorList);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setColorList(filteredColors);
   };
+
+  const resetHandler = () => {
+    window.location.reload();
+  }
 
   return (
     <form onSubmit={handleSubmit} className="goonline_secondForm">
@@ -114,6 +118,9 @@ const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
       </label>
       <button type="submit" className="goonline_secondForm__button">
         Filtruj
+      </button>
+      <button onClick={resetHandler} className="goonline_secondForm__button">
+        Reset
       </button>
     </form>
   );

@@ -9,6 +9,7 @@ $button-border: 1px solid white;
     font-size: $font-size;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: $padding;
     
     input {
