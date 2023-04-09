@@ -4,7 +4,7 @@ import FirstForm from './components/FirstForm';
 import List from './components/List';
 import SecondForm from './components/SecondForm';
 
-export const initialColors: string[] = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00']
+export const initialColors: string[] = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF']
 
 const App = () => {
   const [color, setColor] = useState('');

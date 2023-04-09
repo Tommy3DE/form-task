@@ -58,7 +58,7 @@ class FirstForm extends Component<FirstFormProps, FirstFormState> {
     return (
       <form onSubmit={(e) => this.handleSubmit(e, color)} className="goonline_firstForm">
         <label htmlFor="colorInput">Nazwa Koloru</label>
-        <div>
+        <section>
           <input
             id="colorInput"
             type="text"
@@ -68,7 +68,7 @@ class FirstForm extends Component<FirstFormProps, FirstFormState> {
             maxLength={7}
           />
           <button type="submit">Dodaj</button>
-        </div>
+        </section>
       </form>
     );
   }

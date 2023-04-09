@@ -116,10 +116,10 @@ const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
           onChange={handleFilterChange}
         />
       </label>
-      <button type="submit" className="goonline_secondForm__button">
+      <button type="submit">
         Filtruj
       </button>
-      <button onClick={resetHandler} className="goonline_secondForm__button">
+      <button onClick={resetHandler}>
         Reset
       </button>
     </form>

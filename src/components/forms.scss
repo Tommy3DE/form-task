@@ -2,13 +2,14 @@ $font-size: 25px;
 $border-radius: 5px;
 $padding: 1rem;
 $button-border: 1px solid white;
+$big-font: 30px;
 
 .goonline_firstForm{
     width: 50%;
     margin: auto;
     font-size: $font-size;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: $padding;
     
@@ -17,24 +18,29 @@ $button-border: 1px solid white;
         border-radius: $border-radius;
         border: none;
         padding: 3px;
+        margin: 0 1rem;
     }
 
     button {
         font-size: $font-size;
-        margin-left: 1rem;
+        
         background-color: transparent;
         border: $button-border;
-        margin-top: $padding;
-
+        border-radius: $border-radius;
         &:hover{
             transform: scale(1.1);
             cursor: pointer;
         }
     }
+    section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .goonline_secondForm{
-    width: 60%;
+    width: 75%;
     margin: auto;
     font-size: $font-size;
     display: flex;
@@ -45,16 +51,26 @@ $button-border: 1px solid white;
         font-size: $font-size;
         background-color: transparent;
         border: $button-border;
-
         &:hover{
             transform: scale(1.1);
             cursor: pointer;
         }
+        border-radius: $border-radius;
     }
     input{
         margin-left: 10px;
         height: 20px;
         width: 20px;
+    }
+    label{
+        border: 1px solid white;
+        margin: 0 1rem;
+        border-radius: $border-radius;
+        padding: 5px;
+        &:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+        }
     }
 }
 
@@ -64,8 +80,8 @@ $button-border: 1px solid white;
         flex-direction: column;
 
         button {
-            font-size: 30px;
-            width:20%;
+            font-size: $big-font;
+            width:100%;
             margin: auto;
             margin-top: 30px;
             border: none;
@@ -75,13 +91,14 @@ $button-border: 1px solid white;
             height: 30px;
             width: 30px;
         }
+
     }
     .goonline_firstForm{
         display: flex;
         flex-direction: column;
         
         label {
-            font-size: 35px;
+            font-size: $big-font;
             margin-bottom: 20px;
             margin-top: 20px;
         }
@@ -90,6 +107,10 @@ $button-border: 1px solid white;
         }
         input {
             width: 100%;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
         }
     }
 }
