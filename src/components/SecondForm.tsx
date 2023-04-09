@@ -40,6 +40,7 @@ const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
   };
 
   const rgbToHsl = (r: number, g: number, b: number): number[] => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     r /= 255, g /= 255, b /= 255;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
     let h, s, l = (max + min) / 2;
@@ -97,23 +98,23 @@ const SecondForm = ({ colorList, setColorList }: SecondFormProps) => {
           name="blue"
           checked={filterState.blue}
           onChange={handleFilterChange}
-          />
-          </label>
-          <label htmlFor="saturationCheckbox">
-          Saturation {'>'} 50%
-          <input
-                 type="checkbox"
-                 id="saturationCheckbox"
-                 name="saturation"
-                 checked={filterState.saturation}
-                 onChange={handleFilterChange}
-               />
-          </label>
-          <button type="submit" className="goonline_secondForm__button">
-          Filter
-          </button>
-          </form>
-          );
-          };
-          
-          export default SecondForm;
+        />
+      </label>
+      <label htmlFor="saturationCheckbox">
+        Saturation {'>'} 50%
+        <input
+          type="checkbox"
+          id="saturationCheckbox"
+          name="saturation"
+          checked={filterState.saturation}
+          onChange={handleFilterChange}
+        />
+      </label>
+      <button type="submit" className="goonline_secondForm__button">
+        Filter
+      </button>
+    </form>
+  );
+};
+
+export default SecondForm;
