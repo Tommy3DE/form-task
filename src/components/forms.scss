@@ -96,14 +96,17 @@ $big-font: 30px;
     .goonline_firstForm{
         display: flex;
         flex-direction: column;
+        font-size: $big-font;
         
         label {
-            font-size: $big-font;
             margin-bottom: 20px;
             margin-top: 20px;
+            font-size: $big-font;
         }
         button {
             border: none;
+            margin-top: 1rem;
+            font-size: $font-size;
         }
         input {
             width: 100%;
